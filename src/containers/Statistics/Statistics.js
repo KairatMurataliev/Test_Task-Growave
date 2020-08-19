@@ -48,42 +48,40 @@ class Statistics extends Component {
                         })}
                     </select>
 
-                    {this.props.showModal ?
-                        <div></div> :
-                        <div className={'statistics'}>
-                            {this.props.countryData ?
-                                <div className={'statistics__days'}>
-                                    {this.props.countryData.map((country, index) => {
-                                        return (
-                                            <div key={index} className={'statistics__day'}>
-                                                <div className={'day__date'}>
-                                                    <h3>{moment(country.Date).format('D MMMM')}</h3>
+                    <div className={'statistics'}>
+                        {this.props.countryData ?
+                            <div className={'statistics__days'}>
+                                {this.props.countryData.map((country, index) => {
+                                    return (
+                                        <div key={index} className={'statistics__day'}>
+                                            <div className={'day__date'}>
+                                                <h3>{moment(country.Date).format('D MMMM')}</h3>
+                                            </div>
+                                            <div className={'day__numbers'}>
+                                                <div>
+                                                    <p>Active <span>{country.Active}</span></p>
+                                                    <p>Confirmed <span>{country.Confirmed}</span></p>
                                                 </div>
-                                                <div className={'day__numbers'}>
-                                                    <div>
-                                                        <p>Active <span>{country.Active}</span></p>
-                                                        <p>Confirmed <span>{country.Confirmed}</span></p>
-                                                    </div>
-                                                    <div>
-                                                        <p>Deaths <span>{country.Deaths}</span></p>
-                                                        <p>Recovered <span>{country.Recovered}</span></p>
-                                                    </div>
+                                                <div>
+                                                    <p>Deaths <span>{country.Deaths}</span></p>
+                                                    <p>Recovered <span>{country.Recovered}</span></p>
                                                 </div>
                                             </div>
-                                        )
-                                    })}
-                                </div>
-                                : null}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            : null}
 
-                            {this.props.topRecovered ?
-                                <div className={'statistics__top-day'}>
-                                    <h5>Top recovered cases</h5>
-                                    <h2>{this.props.topRecovered.Recovered}</h2>
-                                    <p>{moment(this.props.topRecovered.Date).format('D MMMM')}</p>
-                                </div>
-                                : null
-                            }
-                        </div>}
+                        {this.props.topRecovered ?
+                            <div className={'statistics__top-day'}>
+                                <h5>Top recovered cases</h5>
+                                <h2>{this.props.topRecovered.Recovered}</h2>
+                                <p>{moment(this.props.topRecovered.Date).format('D MMMM')}</p>
+                            </div>
+                            : null
+                        }
+                    </div>
                 </div> : <Backdrop/>
         );
     }
