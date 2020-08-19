@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCountiesList} from "../../store/actions/actions";
+import {getCountiesList, getOneCountryData} from "../../store/actions/actions";
 
 import './Statisctics.css';
 
@@ -15,9 +15,11 @@ class Statistics extends Component {
     }
 
     changeCountryHandler = event => {
+        const name = event.target.value;
         this.setState({
-            name: event.target.value
-        })
+            name
+        });
+        this.props.getOneCountryData(name)
     };
 
     render() {
@@ -40,7 +42,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getCountiesList: () => dispatch(getCountiesList())
+    getCountiesList: () => dispatch(getCountiesList()),
+    getOneCountryData: (slug) => dispatch(getOneCountryData(slug))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Statistics);

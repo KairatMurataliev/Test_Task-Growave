@@ -28,12 +28,18 @@ export const getCountiesList = () => {
     }
 };
 
+
+const getOneCountryDataSuccess = data => ({type: GET_ONE_COUNTRY_DATA_SUCCESS, data});
+
 export const getOneCountryData = slug => {
     return async dispatch => {
         try {
-            const response = await axios.get('');
+            const response = await axios.get(`/total/dayone/country/${slug}`);
+            const data = response.data.slice(Math.max(response.data.length - 5, 1));
+            console.log(data);
+            dispatch(getOneCountryDataSuccess(data))
         } catch (e) {
-
+            NotificationManager.error('Error', e.response.data.message)
         }
     }
 };
