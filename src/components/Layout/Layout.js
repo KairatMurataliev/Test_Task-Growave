@@ -7,11 +7,9 @@ const Layout = props => {
     return (
         <div>
             <NotificationContainer/>
-            <Header/>
             <main style={{marginTop: '20px'}}>
                 {props.children}
             </main>
-            <Footer/>
         </div>
     );
 };
