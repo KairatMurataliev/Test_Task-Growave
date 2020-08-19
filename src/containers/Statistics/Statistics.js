@@ -77,13 +77,11 @@ class Statistics extends Component {
                             <div className={'statistics__top-day'}>
                                 <h5>Top recovered cases</h5>
                                 <h2>{this.props.topRecovered.Recovered}</h2>
-                                <p>{this.props.topRecovered.Date}</p>
+                                <p>{moment(this.props.topRecovered.Date).format('D MMMM')}</p>
                             </div>
                             : null
                         }
                     </div>
-
-
                 </div> : <Backdrop/>
         );
     }

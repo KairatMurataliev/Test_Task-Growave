@@ -12,7 +12,8 @@ const store = createStore(reducer, persistedState, enhancers);
 
 store.subscribe(() => {
     saveState({
-        countryData: store.getState().countryData
+        countryData: store.getState().countryData,
+        topRecovered: store.getState().topRecovered
     });
 });
 

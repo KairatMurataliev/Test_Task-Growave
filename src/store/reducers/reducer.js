@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
         case GET_COUNTRIES_LIST_SUCCESS:
             return {...state, list: action.list};
         case SHOW_TOP_RECOVERED:
-            return {...state, topRecovered: action.data};
+            return {...state, topRecovered: action.top};
         default:
             return state;
     }
