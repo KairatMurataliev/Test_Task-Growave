@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import {getCountiesList, getOneCountryData} from "../../store/actions/actions";
 
 import './Statisctics.css';
@@ -31,6 +32,32 @@ class Statistics extends Component {
                             return <option key={index} value={country.slug}>{country.country}</option>
                         })}
                     </select>
+
+
+                    {this.props.countryData ?
+                        <div>
+                            {this.props.countryData.map((country, index) => {
+                                console.log(country);
+                                return (
+                                    <div key={index}>
+                                        <div>
+                                            <h3>{moment(country.Date).format('D MMMM')}</h3>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <p>Active <span>{country.Active}</span></p>
+                                                <p>Confirmed <span>{country.Confirmed}</span></p>
+                                            </div>
+                                            <div>
+                                                <p>Deaths <span>{country.Deaths}</span></p>
+                                                <p>Recovered <span>{country.Recovered}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    : null}
                 </div> : null
         );
     }

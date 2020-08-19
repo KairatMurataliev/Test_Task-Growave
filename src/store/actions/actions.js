@@ -1,5 +1,6 @@
 import axios from '../../api-path';
 import {NotificationManager} from 'react-notifications';
+import moment from 'moment';
 import {GET_COUNTRIES_DATA_ERROR,
     GET_COUNTRIES_DATA_SUCCESS,
     GET_ONE_COUNTRY_DATA_ERROR,
@@ -36,7 +37,6 @@ export const getOneCountryData = slug => {
         try {
             const response = await axios.get(`/total/dayone/country/${slug}`);
             const data = response.data.slice(Math.max(response.data.length - 5, 1));
-            console.log(data);
             dispatch(getOneCountryDataSuccess(data))
         } catch (e) {
             NotificationManager.error('Error', e.response.data.message)
