@@ -1,11 +1,9 @@
 import axios from '../../api-path';
 import {NotificationManager} from 'react-notifications';
-import {GET_COUNTRIES_DATA_ERROR,
-    GET_COUNTRIES_DATA_SUCCESS,
-    GET_ONE_COUNTRY_DATA_ERROR,
-    GET_ONE_COUNTRY_DATA_SUCCESS,
+import {GET_ONE_COUNTRY_DATA_SUCCESS,
     GET_COUNTRIES_LIST_SUCCESS,
-    SHOW_TOP_RECOVERED
+    SHOW_TOP_RECOVERED,
+    SHOW_NO_DATA_MODAL
 } from "./actionTypes";
 
 const getCountriesListSuccess = (list) => ({type: GET_COUNTRIES_LIST_SUCCESS, list});
@@ -33,6 +31,7 @@ export const getCountiesList = () => {
 const getOneCountryDataSuccess = data => ({type: GET_ONE_COUNTRY_DATA_SUCCESS, data});
 
 const showTopRecovered = top => ({type: SHOW_TOP_RECOVERED, top});
+const showNoDataModal = () => ({type: SHOW_NO_DATA_MODAL});
 
 export const getOneCountryData = slug => {
     return async dispatch => {
@@ -40,15 +39,15 @@ export const getOneCountryData = slug => {
             const response = await axios.get(`/total/dayone/country/${slug}`);
             if(response.data.length < 1) {
                 return NotificationManager.warning('Oops!', "No data for this country")
+                dispatch(showNoDataModal())
             }
             const data = response.data.slice(Math.max(response.data.length - 5, 1));
-
             const top = data.reduce((dayA,dayB) => dayA.Recovered > dayB.Recovered ? dayA : dayB);
-            console.log(top);
+
             dispatch(showTopRecovered(top));
             dispatch(getOneCountryDataSuccess(data))
         } catch (e) {
-            // NotificationManager.error('Error', e.response.data.message)
+            NotificationManager.error('Error', 'Error occured!')
         }
     }
 };

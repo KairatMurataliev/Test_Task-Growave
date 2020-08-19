@@ -1,15 +1,14 @@
 import {
     GET_ONE_COUNTRY_DATA_SUCCESS,
-    GET_ONE_COUNTRY_DATA_ERROR,
-    GET_COUNTRIES_DATA_SUCCESS,
-    GET_COUNTRIES_DATA_ERROR,
-    GET_COUNTRIES_LIST_SUCCESS, SHOW_TOP_RECOVERED
+    GET_COUNTRIES_LIST_SUCCESS, SHOW_TOP_RECOVERED,
+    SHOW_NO_DATA_MODAL
 } from "../actions/actionTypes";
 
 const initialState = {
     countryData: null,
     list: null,
-    topRecovered: null
+    topRecovered: null,
+    showModal: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +19,8 @@ const reducer = (state = initialState, action) => {
             return {...state, list: action.list};
         case SHOW_TOP_RECOVERED:
             return {...state, topRecovered: action.top};
+        case SHOW_NO_DATA_MODAL:
+            return {...state, showModal: true, countryData: null};
         default:
             return state;
     }
