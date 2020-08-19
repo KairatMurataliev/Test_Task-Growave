@@ -1,13 +1,15 @@
-import {GET_ONE_COUNTRY_DATA_SUCCESS,
+import {
+    GET_ONE_COUNTRY_DATA_SUCCESS,
     GET_ONE_COUNTRY_DATA_ERROR,
     GET_COUNTRIES_DATA_SUCCESS,
     GET_COUNTRIES_DATA_ERROR,
-    GET_COUNTRIES_LIST_SUCCESS
+    GET_COUNTRIES_LIST_SUCCESS, SHOW_TOP_RECOVERED
 } from "../actions/actionTypes";
 
 const initialState = {
     countryData: null,
-    list: null
+    list: null,
+    topRecovered: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +18,8 @@ const reducer = (state = initialState, action) => {
             return {...state, countryData: action.data};
         case GET_COUNTRIES_LIST_SUCCESS:
             return {...state, list: action.list};
+        case SHOW_TOP_RECOVERED:
+            return {...state, topRecovered: action.data};
         default:
             return state;
     }

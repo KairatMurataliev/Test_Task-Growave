@@ -1,7 +1,5 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {NotificationContainer} from 'react-notifications';
-import Header from "../UI/Header/Header";
-import Footer from "../UI/Footer/Footer";
 
 const Layout = props => {
     return (
